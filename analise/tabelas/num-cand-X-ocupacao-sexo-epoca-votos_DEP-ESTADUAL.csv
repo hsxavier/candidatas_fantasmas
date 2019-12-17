@@ -1,0 +1,5 @@
+Ocupacao,MascAntesBaixo,MascDepoisBaixo,MascAntesAlto,MascDepoisAlto,FemAntesBaixo,FemDepoisBaixo,FemAntesAlto,FemDepoisAlto
+Dona de dasa,1,0,1,0,0,81,46,353
+Aposentado,1,2,270,469,0,7,43,205
+Servidor publico,7,12,718,1469,3,28,138,395
+Todas as ocupacoes,71,117,9757,19402,25,504,1570,6089

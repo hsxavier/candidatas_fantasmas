@@ -1,0 +1,6 @@
+** Datas de nascimento erradas
+
+Existem vários registros com datas de nascimento evidentemente erradas (e.g. 10/05/0064) 
+e outras como para a qual o candidato é menor de idade. Esses casos podem ser 
+identificados, mas outros nos quais o erro não leva a algo irregular não podem. 
+

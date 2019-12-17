@@ -1,0 +1,28 @@
+Fonte de dados:
+
+http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
+
+Reportagens:
+
+http://www1.folha.uol.com.br/poder/2017/09/1918964-cotas-para-candidatas-mulheres-nao-bastam-indica-pesquisa.shtml
+
+http://www.generonumero.media/partidos-recorrem-candidatas-fantasmas-para-preencher-cota-de-30-para-mulheres/
+
+Leis:
+
+http://www.planalto.gov.br/ccivil_03/_Ato2007-2010/2009/Lei/L12034.htm
+
+
+*** Sobre os dados ***
+
+A diferença entre os arquivos de votação até 2012 e a partir de 2014 é o surgimento de coluna extra no final chamada TRANSITO.
+
+A diferença entre arquivos de candidatos:
+Em 2012, uma coluna extra no final com email
+A partir de 2014, duas colunas extras no meio com raça e código de raça
+
+Devemos contar os INDEFERIDOS COM RECURSO pois eles podem receber votos? Acho que sim:
+http://www.tre-mt.jus.br/imprensa/noticias-tre-mt/2016/Setembro/candidatos-com-candidatura-indeferida-com-recurso-podem-fazer-campanha-ter-o-nome-nas-urnas-e-receber-votos
+
+*** Testes simples de traçadores de fantasmas ***
+

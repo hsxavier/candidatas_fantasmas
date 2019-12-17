@@ -1,0 +1,62 @@
+O que foi feito/fazer com os dados:
+
+Baixar dados aqui:
+http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
+e descompactar.
+
+Copiar do arquivo PDF (LEIAME.pdf) o nome das colunas para um arquivo TXT, uma para cada período. 
+
+Criar um header.txt dentro de cada diretório com o arquivo com nome das colunas correspondente.
+EXEMPLO: ../criaHeader.py ../colunas_consulta_cand_apartir2014.txt > header.txt
+
+Preparar os dados (originalmente nos arquivos .txt, passando para .csv) com a introdução do header, 
+eliminação da primeira e última aspas de cada linha e mudança de encoding:
+EXEMPLO:  ../addHeader.sh consulta_cand_2012_*.txt
+
+Manualmente, removemos os arquivos vazios:
+consulta_cand_2016_BR.csv
+consulta_cand_2016_DF.csv
+bem_candidato_2016_DF.csv
+
+Pelo que averiguei com os comandos:
+grep -r SENADOR --include \*_BR.txt --include \*_ZZ.txt --include \*_VT.txt
+grep -r VEREADOR --include \*_BR.txt --include \*_ZZ.txt --include \*_VT.txt
+grep -r DEPUTADO --include \*_BR.txt --include \*_ZZ.txt --include \*_VT.txt
+os arquivos com extensão BR (nível nacional, seja lá o que isso significa), ZZ 
+(votos do exterior) e VT (voto em trânsito) não contém votos para esses cargos. 
+Pela minha pesquisa na internet, pessoas em trânsito e no exterior só votam para 
+presidente e vice.
+Portanto, para a aplicação específica de análise de deputados e veradores, podemos 
+excluir esses arquivos. Eles foram movidos para pastas chamadas BR-VT-ZZ.
+
+!! O arquivo de candidatos de 2004 está com muitos erros na data de nascimento !!
+Manualmente, modifiquei datas de nascimento de X para Y no arquivo Z:
+X, Y, Z
+"3010196",  "30101960", consulta_cand_2004_BA.csv
+"3010179",  "30101979", consulta_cand_2004_MA.csv
+"2801 966", "28011966", consulta_cand_2004_BA.csv
+"29021954", "28021954", consulta_cand_2004_CE.csv
+"29021947", "28021947", consulta_cand_2004_MG.csv
+
+Os arquivos de 2004 continham 132 linhas com colunas CODIGO_SIT_CANDIDATO e 
+DESC_SIT_CANDIDATO vazias, o que impossibilitava lê-las como int. Eu verifiquei que 
+a maioria dessas linhas eram de prefeitos e que todas possuíam votos, então assumi que 
+elas eram candidaturas válidas. Também vi que esse era o único caso de duas colunas vazias 
+na sequência. Então, colocamos 2 e DEFERIDO nas colunas com o comando:
+sed 's/\"\;\"\"\;\"\"\;\"/\"\;\"2\"\;\"DEFERIDO\"\;\"/g' votacao_candidato_munzona_2004_??.csv -i
+
+A distribuição dos votos nas eleições de 2004 estão esquisitas. Eu verifiquei que nesse ano existem 
+mais de um candidato no arquivo de cada estado com o mesmo número sequencial do candidato.
+
+O script concat-cand-votos.py junta a base de votos com a base de candidatos em cada estado e ano
+após fazer os cortes necessários e depois junta todas as bases. Precisamos mandar ele escrever 
+o resultado num arquivo.
+
+No arquivo completa.csv:
+
+MANUALMENTE eu troquei o título de eleitor '15081724  29' por '1508172429'. Verificamos que isso foi correto, dado que 
+já existiam entradas em outros anos com o título '1508172429', e elas correspondiam ao mesmo nome de candidato.
+Fiz a mesma coisa com '6468718   30'.
+
+Além disso, troquei os títulos de eleitor '#NI#' por '-1'
+
